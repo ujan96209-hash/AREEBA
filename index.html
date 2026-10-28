@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AREEBA OFFICIAL — Golden Couture for Women</title>
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070707;--ink:#f6efe0;--mute:#a79c84;--gold:#d4af37;--gold2:#f5d77a;--rose:#e0a8a0;--emerald:#0f6b57;--wine:#7a1f3d;--card:#121212;--line:#2a2418;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070707}}
+:root[data-theme="dark"]{--bg:#070707}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;overflow-x:hidden}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+main,header,footer{position:relative;z-index:1}
+header{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:calc(14px + env(safe-area-inset-top,0px)) 5vw 14px;background:linear-gradient(#070707cc,transparent);z-index:5}
+.logo{display:flex;align-items:center;gap:10px;white-space:nowrap;font-family:'Playfair Display',serif;letter-spacing:.35em;color:var(--gold);font-size:1.2rem}
+nav a{color:var(--ink);text-decoration:none;margin-left:22px;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase}
+nav a:hover{color:var(--gold2)}
+.cartbtn{background:none;border:1px solid var(--gold);color:var(--gold);padding:7px 14px;border-radius:30px;cursor:pointer;margin-left:22px;font-size:.8rem}
+section{min-height:100vh;padding:110px 6vw 80px;display:flex;flex-direction:column;justify-content:center}
+h1,h2,h3{font-family:'Playfair Display',serif;font-weight:500}
+h1{font-size:clamp(3rem,10vw,8rem);line-height:.95;background:linear-gradient(100deg,var(--gold2),var(--gold),var(--rose),var(--gold2));background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 8s linear infinite}
+@keyframes sh{to{background-position:250% 0}}
+h2{font-size:clamp(2rem,5vw,3.8rem);margin-bottom:18px}
+h2 em{color:var(--gold);font-style:italic}
+p.lead{max-width:540px;color:var(--mute);line-height:1.8;font-size:1.05rem}
+.tag{letter-spacing:.4em;font-size:.7rem;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+.btn{display:inline-block;margin-top:30px;padding:14px 34px;background:linear-gradient(120deg,var(--gold),var(--gold2));color:#000;text-decoration:none;font-weight:600;letter-spacing:.15em;font-size:.8rem;border:0;border-radius:40px;cursor:pointer;width:fit-content;transition:transform .3s,box-shadow .3s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px #d4af3755}
+.rv{opacity:0;transform:translateY(50px);transition:1s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.right{align-items:flex-end;text-align:right}
+.right p.lead{margin-left:auto}
+.stats{display:flex;gap:40px;margin-top:40px;flex-wrap:wrap}
+.stats b{font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--gold2);display:block}
+.stats span{color:var(--mute);font-size:.8rem;letter-spacing:.1em}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;margin-top:30px}
+.col{height:340px;border-radius:18px;padding:24px;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid var(--line);transition:transform .2s;transform-style:preserve-3d;cursor:pointer}
+.col h3{font-size:1.6rem}.col small{color:#ffffffaa;letter-spacing:.2em;font-size:.7rem}
+.c1{background:linear-gradient(160deg,#2b2208,#0b0b0b 70%)}
+.c2{background:linear-gradient(160deg,#5a1a2e,#0b0b0b 75%)}
+.c3{background:linear-gradient(160deg,#0f4a3d,#0b0b0b 75%)}
+.c4{background:linear-gradient(160deg,#6b4a44,#0b0b0b 75%)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px;margin-top:30px}
+.prod{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .3s,border-color .3s}
+.prod:hover{transform:translateY(-8px);border-color:var(--gold)}
+.pic{height:260px;display:grid;place-items:center}
+.pic svg{width:110px;fill:none;stroke:#fff;stroke-width:1.5;opacity:.85}
+.info{padding:18px}.info h3{font-size:1.2rem}.info p{color:var(--mute);font-size:.85rem;margin:6px 0 14px}
+.row{display:flex;justify-content:space-between;align-items:center}
+.price{color:var(--gold2);font-weight:600}
+.add{background:none;border:1px solid var(--gold);color:var(--gold);border-radius:30px;padding:7px 16px;cursor:pointer;font-size:.75rem;letter-spacing:.1em}
+.add:hover{background:var(--gold);color:#000}
+.quote{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.6rem,4vw,3rem);max-width:900px;text-align:center;margin:auto;line-height:1.4}
+.quote span{color:var(--gold2)}
+form{display:grid;gap:14px;max-width:460px;margin-top:20px}
+input,textarea{background:#0e0e0e;border:1px solid var(--line);color:var(--ink);padding:14px;border-radius:12px;font:inherit}
+input:focus,textarea:focus{outline:1px solid var(--gold)}
+footer{padding:40px 6vw;text-align:center;color:var(--mute);font-size:.8rem;border-top:1px solid var(--line);background:#050505}
+#drawer{position:fixed;top:0;right:-420px;width:min(400px,100%);height:100%;background:#0c0c0c;border-left:1px solid var(--gold);z-index:10;transition:right .4s;padding:24px;display:flex;flex-direction:column}
+#drawer.open{right:0}
+#items{flex:1;overflow:auto;margin:16px 0}
+.it{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:.9rem}
+.it button{background:none;border:0;color:var(--wine);cursor:pointer;margin-left:8px}
+#prog{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--rose),var(--emerald));z-index:20;width:0}
+@media(max-width:700px){.logo{font-size:.8rem;letter-spacing:.18em}.logo img{height:30px!important}nav a{display:none}.right{align-items:flex-start;text-align:left}.right p.lead{margin-left:0}}
+#admin{position:fixed;inset:0 0 0 auto;width:min(520px,100%);background:#0c0c0c;border-left:1px solid var(--gold);z-index:30;display:none;flex-direction:column;padding:20px}
+#admin.open{display:flex}#abody{flex:1;overflow:auto;margin:14px 0}
+#admin h4{color:var(--gold);letter-spacing:.2em;font-size:.75rem;margin:18px 0 8px;text-transform:uppercase}
+#admin label{display:block;font-size:.75rem;color:var(--mute);margin-bottom:8px}#admin label input:not([hidden]){width:100%;margin-top:4px}
+.ap{display:flex;gap:12px;padding:12px;border:1px solid var(--line);border-radius:12px;margin-bottom:10px}.af{flex:1;display:grid;gap:6px}.af input{padding:9px}
+.th{width:64px;height:64px;border-radius:10px;background:#1b1b1b;overflow:hidden;flex:none;display:block}.th img{width:100%;height:100%;object-fit:cover}
+.ar{display:flex;gap:10px;align-items:center}label.up{border:1px dashed var(--gold);color:var(--gold)!important;padding:8px 12px;border-radius:30px;cursor:pointer;margin:0!important;font-size:.75rem!important}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<canvas id="bg"></canvas>
+<header>
+  <div class="logo" id="logo"><img src="logo.svg" alt="" style="height:38px"><span>AREEBA OFFICIAL</span></div>
+  <nav><a href="#story">Story</a><a href="#collections">Collections</a><a href="#shop">Shop</a><a href="#contact">Contact</a><button class="cartbtn" id="cb">Bag (<span id="cc">0</span>)</button></nav>
+</header>
+
+<main>
+<section id="hero">
+  <div class="tag rv">Women's Couture · Est. 2026</div>
+  <h1 class="rv">Dressed<br>in Gold.</h1>
+  <p class="lead rv">Elegant women's clothing crafted to make every entrance unforgettable. Scroll to begin the story.</p>
+  <a class="btn rv" href="#shop">SHOP THE EDIT</a>
+</section>
+
+<section id="story" class="right">
+  <div class="tag rv">Our Story</div>
+  <h2 class="rv">Born from <em>elegance</em>,<br>cut for confidence.</h2>
+  <p class="lead rv">Every piece begins with premium fabric and ends with a woman who feels like she owns the room. Silk, velvet and fine embroidery, finished by hand.</p>
+  <div class="stats rv"><div><b>500+</b><span>DESIGNS</span></div><div><b>12k</b><span>HAPPY CLIENTS</span></div><div><b>100%</b><span>PREMIUM FABRIC</span></div></div>
+</section>
+
+<section id="collections">
+  <div class="tag rv">Collections</div>
+  <h2 class="rv">Four moods. <em>One signature.</em></h2>
+  <div class="cols rv">
+    <div class="col c1"><small>NEW</small><h3>Golden Hour</h3></div>
+    <div class="col c2"><small>EVENING</small><h3>Wine &amp; Velvet</h3></div>
+    <div class="col c3"><small>FESTIVE</small><h3>Emerald Nights</h3></div>
+    <div class="col c4"><small>DAILY</small><h3>Rose Silk</h3></div>
+  </div>
+</section>
+
+<section id="shop">
+  <div class="tag rv">The Edit</div>
+  <h2 class="rv">Featured <em>pieces</em></h2>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section id="quote"><div class="quote rv">“She wore <span>gold</span>, and the whole room remembered her name.”</div></section>
+
+<section id="contact">
+  <div class="tag rv">Contact</div>
+  <h2 class="rv">Visit us or <em>order online</em></h2>
+  <p class="lead rv">Custom sizes, bridal and festive orders welcome. Send us a message and we reply on WhatsApp.</p>
+  <form class="rv" onsubmit="return false">
+    <input id="n" placeholder="Your name"><textarea id="m" rows="4" placeholder="Your message"></textarea>
+    <button class="btn" id="send" type="button" style="margin:0">SEND ON WHATSAPP</button>
+  </form>
+</section>
+</main>
+<footer>© 2026 AREEBA OFFICIAL · Women's Couture · Peshawar</footer>
+
+<aside id="drawer">
+  <div class="row"><h3>Your Bag</h3><button class="add" id="x">Close</button></div>
+  <div id="items"></div>
+  <div class="row"><b>Total</b><b class="price" id="tot">PKR 0</b></div>
+  <button class="btn" id="co" style="width:100%;text-align:center">CHECKOUT ON WHATSAPP</button>
+</aside>
+
+<script src="config.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ===== Product data (swap for Shopify/DB later) =====
+let WA="920000000000"; // <-- your WhatsApp number, country code first
+let P=[
+ {id:1,n:"Golden Silk Gown",d:"Floor-length, hand-finished",p:28500,g:"#3a2c08,#d4af37"},
+ {id:2,n:"Velvet Wine Dress",d:"Evening wear, soft velvet",p:21900,g:"#5a1a2e,#b8325c"},
+ {id:3,n:"Emerald Kaftan",d:"Festive, embroidered hem",p:17500,g:"#0a3d31,#1fa07f"},
+ {id:4,n:"Rose Satin Set",d:"Everyday luxury two-piece",p:12900,g:"#5e403b,#e0a8a0"},
+ {id:5,n:"Black Gold Abaya",d:"Gold-thread detailing",p:23900,g:"#050505,#8a6d1a"},
+ {id:6,n:"Champagne Bridal Lehenga",d:"Made to measure",p:64000,g:"#6b5a2c,#f5d77a"}
+];
+const dress='<svg viewBox="0 0 64 100"><path d="M24 4h16l4 22-6 8 18 62H8l18-62-6-8z"/></svg>';
+const $=s=>document.querySelector(s);
+function grid(){$("#grid").innerHTML=P.map(x=>`<div class="prod rv"><div class="pic" style="background:linear-gradient(160deg,${x.g.split(",")[0]},${x.g.split(",")[1]})">${x.img?`<img src="${x.img}" alt="" style="width:100%;height:100%;object-fit:cover">`:dress}</div><div class="info"><h3>${x.n}</h3><p>${x.d}</p><div class="row"><span class="price">PKR ${x.p.toLocaleString()}</span><button class="add" data-id="${x.id}">ADD</button></div></div></div>`).join("");}
+grid();
+
+// ===== Cart (localStorage, safe) =====
+let cart=[];try{cart=JSON.parse(localStorage.getItem("aurelle")||"[]")}catch(e){}
+const save=()=>{try{localStorage.setItem("aurelle",JSON.stringify(cart))}catch(e){}};
+function draw(){
+ $("#cc").textContent=cart.length;
+ $("#items").innerHTML=cart.length?cart.map((c,i)=>`<div class="it"><span>${c.n}</span><span>PKR ${c.p.toLocaleString()}<button data-r="${i}">✕</button></span></div>`).join(""):'<p class="lead">Your bag is empty.</p>';
+ $("#tot").textContent="PKR "+cart.reduce((a,c)=>a+c.p,0).toLocaleString();
+}
+document.addEventListener("click",e=>{
+ const a=e.target.closest("[data-id]");if(a){cart.push(P.find(p=>p.id==a.dataset.id));save();draw();$("#drawer").classList.add("open")}
+ const r=e.target.closest("[data-r]");if(r){cart.splice(+r.dataset.r,1);save();draw()}
+});
+$("#cb").onclick=()=>$("#drawer").classList.add("open");$("#x").onclick=()=>$("#drawer").classList.remove("open");
+$("#co").onclick=()=>{if(!cart.length)return;const t=cart.map(c=>"• "+c.n+" – PKR "+c.p).join("\n");window.open(`https://wa.me/${WA}?text=`+encodeURIComponent("Hello AREEBA OFFICIAL, I'd like to order:\n"+t),"_blank")};
+$("#send").onclick=()=>window.open(`https://wa.me/${WA}?text=`+encodeURIComponent(($("#n").value||"Guest")+": "+$("#m").value),"_blank");
+draw();
+
+// ===== Scroll reveal + progress + tilt =====
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add("in")),{threshold:.15});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+document.querySelectorAll(".col").forEach(c=>{
+ c.onmousemove=e=>{const b=c.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;c.style.transform=`perspective(700px) rotateY(${x*14}deg) rotateX(${-y*14}deg) scale(1.03)`};
+ c.onmouseleave=()=>c.style.transform="";
+});
+
+// ===== 3D scene =====
+const cv=$("#bg"),R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});
+R.setPixelRatio(Math.min(devicePixelRatio,2));
+const S=new THREE.Scene(),C=new THREE.PerspectiveCamera(55,1,.1,100);C.position.z=7;
+S.add(new THREE.AmbientLight(0xffffff,.35));
+const L1=new THREE.PointLight(0xffd36b,2.2,60);L1.position.set(5,4,6);S.add(L1);
+const L2=new THREE.PointLight(0xe0a8a0,1.6,60);L2.position.set(-6,-3,4);S.add(L2);
+const gold=new THREE.MeshStandardMaterial({color:0xd4af37,metalness:1,roughness:.22});
+const knot=new THREE.Mesh(new THREE.TorusKnotGeometry(1.3,.38,220,24,2,3),gold);S.add(knot);
+const rings=[];
+for(let i=0;i<14;i++){const m=new THREE.Mesh(new THREE.TorusGeometry(.25+Math.random()*.35,.04,12,40),new THREE.MeshStandardMaterial({color:i%3?0xd4af37:0xe0a8a0,metalness:1,roughness:.25}));
+ m.position.set((Math.random()-.5)*16,(Math.random()-.5)*12,(Math.random()-.5)*8-2);m.userData.s=Math.random()*.01+.004;S.add(m);rings.push(m)}
+const N=900,pos=new Float32Array(N*3);for(let i=0;i<N*3;i++)pos[i]=(Math.random()-.5)*30;
+const pg=new THREE.BufferGeometry();pg.setAttribute("position",new THREE.BufferAttribute(pos,3));
+const pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0xf5d77a,size:.035,transparent:true,opacity:.8}));S.add(pts);
+// per-section mood: gold -> rose -> emerald -> wine -> gold
+const moods=[0xd4af37,0xe0a8a0,0x1fa07f,0xb8325c,0xf5d77a].map(c=>new THREE.Color(c));
+let mx=0,my=0,sc=0;
+addEventListener("mousemove",e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+function size(){R.setSize(innerWidth,innerHeight);C.aspect=innerWidth/innerHeight;C.updateProjectionMatrix()}
+addEventListener("resize",size);size();
+addEventListener("scroll",()=>{const h=document.documentElement.scrollHeight-innerHeight;sc=h>0?scrollY/h:0;$("#prog").style.width=sc*100+"%"},{passive:true});
+const tmp=new THREE.Color();
+(function loop(t){
+ t*=.001;
+ const k=sc*(moods.length-1),i=Math.min(Math.floor(k),moods.length-2);
+ tmp.copy(moods[i]).lerp(moods[i+1],k-i);
+ gold.color.lerp(tmp,.08);L1.color.lerp(tmp,.08);
+ const narrow=innerWidth<700;
+ const tx=narrow?0:Math.sin(sc*Math.PI*2)*3.2, ty=-sc*3;
+ knot.position.x+=(tx-knot.position.x)*.05;knot.position.y+=(ty*.4-knot.position.y)*.05;
+ knot.scale.setScalar(narrow?.7:1+Math.sin(sc*Math.PI)*.35);
+ knot.rotation.x=t*.25+sc*6;knot.rotation.y=t*.35+mx*1.5;
+ rings.forEach(r=>{r.rotation.x+=r.userData.s;r.rotation.y+=r.userData.s*1.4;r.position.y+=Math.sin(t+r.position.x)*.002});
+ pts.rotation.y=t*.02+sc*2;
+ C.position.x+=(mx*1.2-C.position.x)*.04;C.position.y+=(-my*.8-C.position.y)*.04;C.position.z=7-sc*1.5;
+ C.lookAt(0,0,0);R.render(S,C);requestAnimationFrame(loop);
+})(0);
+
+// ===== Load shop settings from Supabase (set up in config.js) =====
+const BR=$("#logo");
+(async()=>{try{
+ if(typeof SUPABASE_URL==="undefined"||SUPABASE_URL.includes("YOUR"))return;
+ const r=await fetch(`${SUPABASE_URL}/rest/v1/site_config?id=eq.1&select=data`,{headers:{apikey:SUPABASE_KEY,Authorization:"Bearer "+SUPABASE_KEY}});
+ const c=(await r.json())[0]?.data;if(!c)return;
+ if(c.logo)BR.innerHTML=`<img src="${c.logo}" alt="logo" style="height:38px">`;else if(c.brand)BR.querySelector("span").textContent=c.brand;
+ if(c.wa)WA=c.wa;if(c.products&&c.products.length)P=c.products;grid();
+}catch(e){}})();
+</script>
+</body>
+</html>

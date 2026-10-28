@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AREEBA OFFICIAL Dashboard</title><meta name="robots" content="noindex"><link rel="icon" href="logo.svg">
+<style>
+*{box-sizing:border-box;margin:0}body{background:#070707;color:#f6efe0;font-family:system-ui,sans-serif;padding:20px;max-width:720px;margin:auto}
+h1{color:#d4af37;letter-spacing:.2em;font-size:1.3rem;margin-bottom:16px}h4{color:#d4af37;letter-spacing:.2em;font-size:.75rem;margin:22px 0 8px;text-transform:uppercase}
+input{width:100%;background:#0e0e0e;border:1px solid #2a2418;color:#f6efe0;padding:11px;border-radius:10px;margin:4px 0 8px;font:inherit}
+label{font-size:.75rem;color:#a79c84;display:block}.b{background:linear-gradient(120deg,#d4af37,#f5d77a);color:#000;border:0;padding:12px 26px;border-radius:30px;font-weight:600;cursor:pointer}
+.o{background:none;border:1px solid #d4af37;color:#d4af37;padding:7px 14px;border-radius:30px;cursor:pointer;font-size:.75rem}
+.ap{display:flex;gap:12px;padding:12px;border:1px solid #2a2418;border-radius:12px;margin-bottom:10px}.af{flex:1}
+.th{width:72px;height:72px;border-radius:10px;background:#1b1b1b;overflow:hidden;flex:none}.th img{width:100%;height:100%;object-fit:cover}
+.ar{display:flex;gap:10px;align-items:center}#login,#panel{display:none}#msg{position:sticky;bottom:0;background:#070707;padding:10px 0;color:#f5d77a}
+</style></head><body>
+<h1>AREEBA OFFICIAL · SHOP DASHBOARD</h1>
+<div id="login"><label>Email<input id="em" type="email"></label><label>Password<input id="pw" type="password"></label><button class="b" id="li">LOG IN</button></div>
+<div id="panel"><div id="body"></div><div id="msg"></div><button class="b" id="save">SAVE &amp; PUBLISH</button> <button class="o" id="out">Log out</button></div>
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY),$=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const msg=t=>$("#msg").textContent=t;
+const DEFAULT={brand:"AREEBA OFFICIAL",logo:"",wa:"920000000000",products:[
+{id:1,n:"Golden Silk Gown",d:"Floor-length, hand-finished",p:28500,g:"#3a2c08,#d4af37"},
+{id:2,n:"Velvet Wine Dress",d:"Evening wear, soft velvet",p:21900,g:"#5a1a2e,#b8325c"},
+{id:3,n:"Emerald Kaftan",d:"Festive, embroidered hem",p:17500,g:"#0a3d31,#1fa07f"},
+{id:4,n:"Rose Satin Set",d:"Everyday luxury two-piece",p:12900,g:"#5e403b,#e0a8a0"},
+{id:5,n:"Black Gold Abaya",d:"Gold-thread detailing",p:23900,g:"#050505,#8a6d1a"},
+{id:6,n:"Champagne Bridal Lehenga",d:"Made to measure",p:64000,g:"#6b5a2c,#f5d77a"}]};
+let draft;
+const th=u=>u?`<img src="${esc(u)}" alt="">`:"";
+function ar(){$("#body").innerHTML=`<h4>Brand</h4><label>Shop name<input data-k="brand" value="${esc(draft.brand)}"></label><label>WhatsApp number (country code first)<input data-k="wa" value="${esc(draft.wa)}"></label><div class="ar"><span class="th">${th(draft.logo)}</span><label class="o">Upload logo<input type="file" accept="image/*" data-up="logo" hidden></label></div><h4>Products</h4>`+
+draft.products.map((p,i)=>`<div class="ap"><span class="th">${th(p.img)}</span><div class="af"><input data-i="${i}" data-f="n" value="${esc(p.n)}" placeholder="Name"><input data-i="${i}" data-f="d" value="${esc(p.d)}" placeholder="Description"><input type="number" data-i="${i}" data-f="p" value="${+p.p||0}" placeholder="Price PKR"><div class="ar"><label class="o">Upload photo<input type="file" accept="image/*" data-up="${i}" hidden></label><button class="o" data-del="${i}">Delete</button></div></div></div>`).join("")+`<button class="o" id="addp">+ Add product</button>`}
+async function show(){$("#panel").style.display="block";const{data}=await sb.from("site_config").select("data").eq("id",1).maybeSingle();draft=data?.data?.products?data.data:DEFAULT;ar()}
+$("#li").onclick=async()=>{const{error}=await sb.auth.signInWithPassword({email:$("#em").value,password:$("#pw").value});error?alert(error.message):location.reload()};
+$("#out").onclick=async()=>{await sb.auth.signOut();location.reload()};
+$("#body").addEventListener("input",e=>{const t=e.target;if(t.dataset.k)draft[t.dataset.k]=t.value;else if(t.dataset.f)draft.products[t.dataset.i][t.dataset.f]=t.dataset.f==="p"?(+t.value||0):t.value});
+$("#body").addEventListener("change",async e=>{const t=e.target,f=t.files&&t.files[0];if(t.dataset.up===undefined||!f)return;
+ msg("Uploading…");const path=Date.now()+"-"+f.name.replace(/[^\w.]/g,"_");
+ const{error}=await sb.storage.from("images").upload(path,f);if(error)return msg("Upload failed: "+error.message);
+ const url=sb.storage.from("images").getPublicUrl(path).data.publicUrl;
+ if(t.dataset.up==="logo")draft.logo=url;else draft.products[+t.dataset.up].img=url;msg("Photo added. Press Save & Publish.");ar()});
+$("#body").addEventListener("click",e=>{const t=e.target;if(t.dataset.del!==undefined){draft.products.splice(+t.dataset.del,1);ar()}if(t.id==="addp"){draft.products.push({id:Date.now(),n:"New piece",d:"",p:0,g:"#3a2c08,#d4af37"});ar()}});
+$("#save").onclick=async()=>{const{error}=await sb.from("site_config").upsert({id:1,data:draft});msg(error?"Save failed: "+error.message:"Saved ✓ Website updated.")};
+(async()=>{const{data:{session}}=await sb.auth.getSession();session?show():$("#login").style.display="block"})();
+</script></body></html>
